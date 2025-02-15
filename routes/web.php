@@ -46,6 +46,6 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::prefix('frontend')->name('frontend.')->group(function () {
-    Route::get('/eOshop', [FrontendController::class,'index'])->name('index');
-    // Route::get('/filter-products', [ProductController::class, 'filterProducts'])->name('filter_products');
+    Route::get('/eOshop', [FrontendController::class,'home'])->name('index');
+    Route::get('/shopping', [FrontendController::class, 'shop'])->name('shop');
 });
