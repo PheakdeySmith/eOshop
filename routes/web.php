@@ -5,8 +5,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\FrontendController;
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -46,6 +47,17 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::prefix('frontend')->name('frontend.')->group(function () {
-    Route::get('/eOshop', [FrontendController::class,'home'])->name('index');
+    // Home and shopping routes
+    Route::get('/eOshop', [FrontendController::class, 'home'])->name('index');
     Route::get('/shopping', [FrontendController::class, 'shop'])->name('shop');
+
+    // Checkout routes
+    Route::get('/checkout', [FrontendController::class, 'checkout'])->name('checkout');
+    Route::post('/create-checkout-session', [CheckoutController::class, 'createCheckoutSession'])->name('checkout.session.create');
+    Route::get('/checkout-success', [CheckoutController::class, 'checkoutSuccess'])->name('checkout.success');
+    Route::get('/checkout-cancel', [CheckoutController::class, 'checkoutCancel'])->name('checkout.cancel');
+
+    // Order routes
+    Route::get('/order', [FrontendController::class, 'order'])->name('order');
+    Route::get('/order/{id}', [FrontendController::class, 'showOrder'])->name('order.show');
 });

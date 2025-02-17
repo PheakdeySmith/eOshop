@@ -43,11 +43,19 @@
 
             <ul class="d-flex justify-content-end list-unstyled m-0">
                 <li>
-                    <a href="#" class="rounded-circle bg-light p-2 mx-1">
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                            <use xlink:href="#user"></use>
-                        </svg>
-                    </a>
+                    <div class="dropdown">
+                        <a href="#" class="rounded-circle bg-light p-2 mx-1" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <use xlink:href="#user"></use>
+                            </svg>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" href="{{ route('frontend.order') }}">View Orders</a></li>
+                            <li><a class="dropdown-item" href="#">Profile Details</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </div>
                 </li>
                 <li>
                     <a href="#" class="rounded-circle bg-light p-2 mx-1">

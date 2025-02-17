@@ -16,7 +16,7 @@ class CartController extends Controller
     : collect(session()->get('cart', []));
 
 
-    return view('frontend.cart.index', compact('cartItems'));
+    return view('frontend.shopping.checkout', compact('cartItems'));
 }
 
     public function addToCart(Request $request)
@@ -114,4 +114,5 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Cart cleared successfully.');
     }
+
 }

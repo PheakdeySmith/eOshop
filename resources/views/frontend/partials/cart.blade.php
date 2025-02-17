@@ -29,7 +29,8 @@
                     </li>
                 </ul>
 
-                <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                <a href="{{ route('frontend.checkout') }}" class="w-100 btn btn-primary btn-lg">Continue to checkout</a>
+
             @endif
         </div>
     </div>
