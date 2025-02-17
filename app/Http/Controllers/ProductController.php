@@ -104,14 +104,11 @@ class ProductController extends Controller
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
-            // Handle image update
             if ($request->hasFile('image')) {
-                // Delete old image if exists
                 if ($product->image) {
                     Storage::disk('public')->delete($product->image);
                 }
 
-                // Store new image
                 $validatedData['image'] = $request->file('image')->store('product_images', 'public');
             }
 

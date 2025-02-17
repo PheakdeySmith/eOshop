@@ -78,7 +78,9 @@
                 <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button"
                     data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                     <span class="fs-6 text-muted dropdown-toggle">Your Cart</span>
-                    <span class="cart-total fs-5 fw-bold">$1290.00</span>
+                    <span class="cart-total fs-5 fw-bold">${{ number_format(array_sum(array_map(function($item) {
+                        return ($item['price'] ?? $item->price) * ($item['quantity'] ?? $item->quantity);
+                    }, $cartItems->toArray())), 2) }}</span>
                 </button>
             </div>
         </div>

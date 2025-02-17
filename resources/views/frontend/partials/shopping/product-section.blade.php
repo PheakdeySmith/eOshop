@@ -38,8 +38,11 @@
                                         <use xlink:href="#plus"></use>
                                     </svg></button>
                             </div>
-                            <a href="#" class="nav-link">Add to Cart <iconify-icon
-                                    icon="uil:shopping-cart"></iconify-icon></a>
+                            <form action="{{ route('cart.add') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <button type="submit" class="nav-link">Add to Cart <iconify-icon icon="uil:shopping-cart"></iconify-icon></button>
+                            </form>
                         </div>
                     </div>
                 </div>

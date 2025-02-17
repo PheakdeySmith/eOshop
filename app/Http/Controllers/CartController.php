@@ -10,13 +10,14 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     public function index()
-    {
-        $cartItems = Auth::check()
-            ? Cart::where('user_id', Auth::id())->with('product')->get()
-            : collect(session()->get('cart', []));
+{
+    $cartItems = Auth::check()
+    ? Cart::where('user_id', Auth::id())->with('product')->get()
+    : collect(session()->get('cart', []));
 
-        return view('frontend.cart.index', compact('cartItems'));
-    }
+
+    return view('frontend.cart.index', compact('cartItems'));
+}
 
     public function addToCart(Request $request)
     {

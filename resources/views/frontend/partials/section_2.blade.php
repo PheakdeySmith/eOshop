@@ -7,7 +7,7 @@
                     <h2 class="section-title">Category</h2>
 
                     <div class="d-flex align-items-center">
-                        <a href="#" class="btn-link text-decoration-none">View All Categories →</a>
+                        <a href="{{ route('frontend.shop') }}" class="btn-link text-decoration-none">View All Categories →</a>
                         <div class="swiper-buttons">
                             <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
                             <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
