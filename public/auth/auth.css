@@ -1,105 +1,108 @@
 /* Center the form container on the screen */
 .center-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;  /* Make the wrapper take full height */
-  background-color: #f0f0f0;  /* Optional: Light background color */
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;  /* Make the wrapper take full height */
+    background-color: #f8f9fa;  /* Lighter background color for better contrast */
+  }
 
-/* Form container with card style */
-.form-container {
-  width: 100%;
-  max-width: 400px;  /* Limit the width of the card */
-  border-radius: 1rem;  /* Rounded corners for the card */
-  background-color: rgba(17, 24, 39, 1);
-  padding: 2rem;
-  color: rgba(243, 244, 246, 1);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Light shadow around the card */
-}
+  /* Form container with card style */
+  .form-container {
+    width: 100%;
+    max-width: 400px;  /* Limit the width of the card */
+    border-radius: 1rem;  /* Rounded corners for the card */
+    background-color: #343a40;  /* Dark background for a professional look */
+    padding: 2rem;
+    color: #f8f9fa;  /* Light text color for contrast */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Light shadow around the card */
+  }
 
-/* Title style */
-.title {
-  text-align: center;
-  font-size: 1.5rem;
-  line-height: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;  /* Space below the title */
-}
+  /* Title style */
+  .title {
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #f8f9fa;
+  }
 
-/* Form container */
-.form {
-  display: flex;
-  flex-direction: column;  /* Stack the form elements vertically */
-  gap: 1rem;  /* Space between form items */
-}
+  /* Form container */
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-/* Input group style */
-.input-group {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
+  /* Input group style */
+  .input-group {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
 
-/* Input label style */
-.input-group label {
-  display: block;
-  color: rgba(156, 163, 175, 1);
-  margin-bottom: 4px;
-}
+  /* Input label style */
+  .input-group label {
+    display: block;
+    color: #ced4da;
+    margin-bottom: 4px;
+  }
 
-/* Input field style */
-.input-group input {
-  width: 100%;
-  border-radius: 0.375rem;
-  border: 1px solid rgba(55, 65, 81, 1);
-  outline: 0;
-  background-color: rgba(17, 24, 39, 1);
-  padding: 0.75rem 1rem;
-  color: rgba(243, 244, 246, 1);
-}
+  /* Input field style */
+  .input-group input {
+    width: 100%;
+    border-radius: 0.375rem;
+    border: 1px solid #c7c8c8;
+    outline: 0;
+    background-color: #495057;
+    padding: 0.75rem 1rem;
+    color: #f8f9fa;
+  }
 
-/* Focus state of input */
-.input-group input:focus {
-  border-color: rgba(167, 139, 250);
-}
+  /* Focus state of input */
+  .input-group input:focus {
+    border-color: #020202;
+    background-color: #020202;
+    color: #fff;
+  }
 
-/* Sign in button style */
-.sign {
-  display: block;
-  width: 100%;
-  background-color: rgba(167, 139, 250, 1);
-  padding: 0.75rem;
-  text-align: center;
-  color: rgba(17, 24, 39, 1);
-  border: none;
-  border-radius: 0.375rem;
-  font-weight: 600;
-  cursor: pointer;
-}
+  /* Sign in button style */
+  .sign {
+    display: block;
+    width: 100%;
+    background-color: #6f42c1;
+    padding: 0.75rem;
+    text-align: center;
+    color: #fff;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
 
-/* Hover effect for button */
-.sign:hover {
-  background-color: rgba(167, 139, 250, 0.8);
-}
+  /* Hover effect for button */
+  .sign:hover {
+    background-color: #5a2e9e;
+  }
 
-/* Forgot password and other links (if any) */
-.forgot {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 0.75rem;
-  line-height: 1rem;
-  color: rgba(156, 163, 175, 1);
-  margin: 8px 0 14px 0;
-}
+  /* Forgot password and other links (if any) */
+  .forgot {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    color: #ced4da;  /* Lighter color for the text */
+    margin: 8px 0 14px 0;
+  }
 
-/* Forgot and signup link styles */
-.forgot a, .signup a {
-  color: rgba(243, 244, 246, 1);
-  text-decoration: none;
-  font-size: 14px;
-}
+  /* Forgot and signup link styles */
+  .forgot a, .signup a {
+    color: #6f42c1;
+    text-decoration: none;
+    font-size: 14px;
+  }
 
-/* Hover effect for forgot/signup links */
-.forgot a:hover, .signup a:hover {
-  text-decoration: underline rgba(167, 139, 250, 1);
-}
+  /* Hover effect for forgot/signup links */
+  .forgot a:hover, .signup a:hover {
+    text-decoration: underline #6f42c1;
+  }

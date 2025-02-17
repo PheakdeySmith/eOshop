@@ -1,7 +1,7 @@
 <nav class="sidebar">
     <div class="sidebar-header">
         <a href="#" class="sidebar-brand">
-            eO<span><b>cambo</b></span>
+            eO<span><b>shop</b></span>
         </a>
         <div class="sidebar-toggler not-active">
             <span></span>
@@ -63,6 +63,23 @@
                         <li class="nav-item">
                             <a href="{{ route('orders.index') }}"
                                 class="nav-link {{ request()->routeIs('orders.index') ? 'active' : '' }}">Order</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!-- New User Management Section -->
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#userPages" role="button" aria-expanded="false"
+                    aria-controls="userPages">
+                    <i class="link-icon" data-feather="users"></i>
+                    <span class="link-title">Manage Users</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="userPages">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.users.index') }}"
+                                class="nav-link {{ request()->routeIs('admin.users.index') ? 'active' : '' }}">Users</a>
                         </li>
                     </ul>
                 </div>

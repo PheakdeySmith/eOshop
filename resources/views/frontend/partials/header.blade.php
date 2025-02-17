@@ -34,64 +34,89 @@
             </div>
         </div>
 
-        <div
-            class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+        <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+            <!-- Support Box -->
             <div class="support-box text-end d-none d-xl-block">
                 <span class="fs-6 text-muted">For Support?</span>
                 <h5 class="mb-0">+980-34984089</h5>
             </div>
 
-            <ul class="d-flex justify-content-end list-unstyled m-0">
-                <li>
-                    <div class="dropdown">
-                        <a href="#" class="rounded-circle bg-light p-2 mx-1" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <svg width="24" height="24" viewBox="0 0 24 24">
-                                <use xlink:href="#user"></use>
-                            </svg>
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                            <li><a class="dropdown-item" href="{{ route('frontend.order') }}">View Orders</a></li>
-                            <li><a class="dropdown-item" href="#">Profile Details</a></li>
-                            <li><a class="dropdown-item" href="#">Settings</a></li>
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li>
-                    <a href="#" class="rounded-circle bg-light p-2 mx-1">
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                            <use xlink:href="#heart"></use>
-                        </svg>
-                    </a>
-                </li>
-                <li class="d-lg-none">
-                    <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                            <use xlink:href="#cart"></use>
-                        </svg>
-                    </a>
-                </li>
-                <li class="d-lg-none">
-                    <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
-                        <svg width="24" height="24" viewBox="0 0 24 24">
-                            <use xlink:href="#search"></use>
-                        </svg>
-                    </a>
-                </li>
+            @auth
+<!-- Authenticated User -->
+<ul class="d-flex justify-content-end list-unstyled m-0">
+    <li>
+        <div class="dropdown">
+            <a href="#" class="rounded-circle bg-light p-2 mx-1" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <svg width="24" height="24" viewBox="0 0 24 24">
+                    <use xlink:href="#user"></use>
+                </svg>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" href="{{ route('frontend.order') }}">View Orders</a></li>
+                <li><a class="dropdown-item" href="#">Profile Details</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                @if(auth()->user()->hasRole('admin'))
+                    <li><a class="dropdown-item" href="{{ route('home') }}">Go to Dashboard</a></li>
+                @endif
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <li>
+                        <button type="submit" class="dropdown-item w-100 text-start border-0 bg-transparent">Logout</button>
+                    </li>
+                </form>
             </ul>
-
-            <div class="cart text-end d-none d-lg-block dropdown">
-                <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button"
-                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                    <span class="fs-6 text-muted dropdown-toggle">Your Cart</span>
-                    <span class="cart-total fs-5 fw-bold">${{ number_format(array_sum(array_map(function($item) {
-                        return ($item['price'] ?? $item->price) * ($item['quantity'] ?? $item->quantity);
-                    }, $cartItems->toArray())), 2) }}</span>
-                </button>
-            </div>
         </div>
+    </li>
+    <li>
+        <a href="#" class="rounded-circle bg-light p-2 mx-1">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#heart"></use>
+            </svg>
+        </a>
+    </li>
+    <li class="d-lg-none">
+        <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#cart"></use>
+            </svg>
+        </a>
+    </li>
+    <li class="d-lg-none">
+        <a href="#" class="rounded-circle bg-light p-2 mx-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch" aria-controls="offcanvasSearch">
+            <svg width="24" height="24" viewBox="0 0 24 24">
+                <use xlink:href="#search"></use>
+            </svg>
+        </a>
+    </li>
+</ul>
+
+<div class="cart text-end d-none d-lg-block dropdown">
+    <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+        <span class="fs-6 text-muted dropdown-toggle">Your Cart</span>
+        <span class="cart-total fs-5 fw-bold">${{ number_format(array_sum(array_map(function($item) {
+            return ($item['price'] ?? $item->price) * ($item['quantity'] ?? $item->quantity);
+        }, $cartItems->toArray())), 2) }}</span>
+    </button>
+</div>
+@else
+<!-- Guest User -->
+<ul class="d-flex justify-content-end list-unstyled m-0">
+    <li>
+        <a href="{{ route('login') }}" class="btn btn-primary rounded-pill px-3 py-2 mx-1 text-white">
+            Login
+        </a>
+    </li>
+    <li>
+        <a href="{{ route('register') }}" class="btn btn-secondary rounded-pill px-3 py-2 mx-1 text-white">
+            Register
+        </a>
+    </li>
+</ul>
+
+@endauth
+
+        </div>
+
 
     </div>
 </div>

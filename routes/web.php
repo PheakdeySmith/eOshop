@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Admin\UserPermissionController;
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -16,6 +18,26 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::middleware('role:admin')->group(function () {
+        // User management routes
+        Route::prefix('admin/users')->name('admin.users.')->group(function () {
+            // View users list
+            Route::get('/', [UserController::class, 'index'])->name('index');
+            // Create a new user
+            Route::get('/create', [UserController::class, 'create'])->name('create');
+            Route::post('/', [UserController::class, 'store'])->name('store');
+            // Edit user details
+            Route::get('{id}/edit', [UserController::class, 'edit'])->name('edit');
+            Route::put('{id}', [UserController::class, 'update'])->name('update');
+            // Delete a user
+            Route::delete('{id}', [UserController::class, 'destroy'])->name('destroy');
+        });
+
+        // User permissions
+        Route::get('/admin/users/{userId}/permissions', [UserPermissionController::class, 'editPermissions'])->name('admin.users.editPermissions');
+        Route::put('/admin/users/{userId}/permissions', [UserPermissionController::class, 'updatePermissions'])->name('admin.users.updatePermissions');
+    });
 
     Route::prefix('products')->name('products.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');
@@ -54,7 +76,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 Route::prefix('frontend')->name('frontend.')->group(function () {
     // Home and shopping routes

@@ -43,10 +43,10 @@ class CheckoutController extends Controller
 
     public function checkoutSuccess(Request $request)
 {
-    // Check if an order was already created in this session
-    if (session()->has('order_created')) {
-        return redirect()->route('frontend.order')->with('info', 'Your order has already been processed.');
-    }
+    // // Check if an order was already created in this session
+    // if (session()->has('order_created')) {
+    //     return redirect()->route('frontend.order')->with('info', 'Your order has already been processed.');
+    // }
 
     // Retrieve cart items from session
     $cart = session()->get('cart');

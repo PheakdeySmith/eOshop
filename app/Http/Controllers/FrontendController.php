@@ -23,11 +23,9 @@ class FrontendController extends Controller
 
         $categories = Category::where('status', '1')->get();
 
-
         $cartItems = Auth::check()
             ? Cart::where('user_id', Auth::id())->with('product')->get()
             : collect(session()->get('cart', []));
-
 
         return view('frontend.index', compact('products', 'categories', 'cartItems'));
     }
@@ -55,63 +53,55 @@ class FrontendController extends Controller
 
     public function checkout()
     {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'You need to log in to view your cart.');
+        }
         $cartItems = [];
 
-    if (Auth::check()) {
-        // Fetch cart items for logged-in user
-        $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
-    } else {
-        // Fetch cart items from session for guests
-        $cartItems = collect(session()->get('cart', []));
-    }
+        if (Auth::check()) {
+            $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
+        } else {
+            $cartItems = collect(session()->get('cart', []));
+        }
 
         return view('frontend.shopping.checkout', compact('cartItems'));
     }
 
     public function order()
-{
-    // Fetch cart items based on the user's authentication status
-    $cartItems = [];
+    {
+        $cartItems = [];
 
-    if (Auth::check()) {
-        // Fetch cart items for logged-in user
-        $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
-    } else {
-        // Fetch cart items from session for guests
-        $cartItems = collect(session()->get('cart', []));
+        if (Auth::check()) {
+            $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
+        } else {
+            $cartItems = collect(session()->get('cart', []));
+        }
+
+        $orderWithItems = null;
+        if (session()->has('order_created')) {
+            $orderWithItems = Order::with('orderItems.product')->find(session('order_created'));
+        }
+
+        return view('frontend.shopping.orders', compact('cartItems', 'orderWithItems'));
     }
 
-    // Check if an order was already created and passed from the checkout success
-    $orderWithItems = null;
-    if (session()->has('order_created')) {
-        $orderWithItems = Order::with('orderItems.product')->find(session('order_created'));
+    public function showOrder($id)
+    {
+        $cartItems = [];
+
+        if (Auth::check()) {
+            $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
+        } else {
+            $cartItems = collect(session()->get('cart', []));
+        }
+
+        $orderWithItems = null;
+        if (session()->has('order_created')) {
+            $orderWithItems = Order::with('orderItems.product')->find(session('order_created'));
+        }
+
+        $order = Order::with('orderItems.product')->findOrFail($id);
+
+        return view('frontend.shopping.orders', compact('cartItems', 'orderWithItems'));
     }
-
-    // Return the view with both cart items and order data
-    return view('frontend.shopping.orders', compact('cartItems', 'orderWithItems'));
-}
-public function showOrder($id)
-{
-    // Fetch cart items based on the user's authentication status
-    $cartItems = [];
-
-    if (Auth::check()) {
-        // Fetch cart items for logged-in user
-        $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
-    } else {
-        // Fetch cart items from session for guests
-        $cartItems = collect(session()->get('cart', []));
-    }
-
-    // Check if an order was already created and passed from the checkout success
-    $orderWithItems = null;
-    if (session()->has('order_created')) {
-        $orderWithItems = Order::with('orderItems.product')->find(session('order_created'));
-    }
-    // Fetch the order with its items and related product details
-    $order = Order::with('orderItems.product')->findOrFail($id);
-
-    // Return the order confirmation view
-    return view('frontend.shopping.orders', compact('cartItems', 'orderWithItems'));
-}
 }

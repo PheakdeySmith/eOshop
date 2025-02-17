@@ -29,7 +29,8 @@
         </form>
 
         <p class="switch-form">
-            Already have an account? <a href="{{ route('login') }}">Login</a>
+            Already have an account?
+            <a href="{{ route('login') }}" class="text-primary text-decoration-none hover-underline">Login</a>
         </p>
     </div>
 </div>

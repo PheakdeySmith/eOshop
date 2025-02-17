@@ -2,7 +2,7 @@
     <a href="#" class="sidebar-toggler">
         <i data-feather="menu"></i>
     </a>
-    <div class="navbar-content">
+    <div class="navbar-content d-flex justify-content-between align-items-center">
         <form class="search-form">
             <div class="input-group">
                 <div class="input-group-text">
@@ -11,10 +11,22 @@
                 <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
             </div>
         </form>
+
+        <div class="d-flex align-items-center">
+            <!-- Add button here -->
+            <div class="input-group flatpickr wd-200 me-2 mb-2 mb-md-0">
+                <span class="input-group-text input-group-addon bg-transparent border-primary d-flex justify-content-center align-items-center" data-toggle>
+                    <i data-feather="home" class="text-primary"></i>
+                </span>
+                <a href="{{ route('frontend.index') }}" class="btn btn-outline-primary form-control bg-transparent border-primary d-flex justify-content-center align-items-center">
+                    Home Page
+                </a>
+            </div>
+        </div>
+
         <ul class="navbar-nav">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button"
-                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="wd-30 ht-30 rounded-circle" src="https://via.placeholder.com/30x30" alt="profile">
                 </a>
                 <div class="dropdown-menu p-0" aria-labelledby="profileDropdown">
@@ -46,6 +58,7 @@
                                 <span>Switch User</span>
                             </a>
                         </li>
+
                         <!-- Logout Link -->
                         <li class="dropdown-item py-2">
                             <form method="POST" action="{{ route('logout') }}">
