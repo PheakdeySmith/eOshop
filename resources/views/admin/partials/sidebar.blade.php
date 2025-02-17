@@ -20,7 +20,8 @@
             </li>
             <li class="nav-item nav-category">Fields</li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#productPages" role="button" aria-expanded="false" aria-controls="productPages">
+                <a class="nav-link" data-bs-toggle="collapse" href="#productPages" role="button" aria-expanded="false"
+                    aria-controls="productPages">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Manage Products</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
@@ -28,13 +29,15 @@
                 <div class="collapse" id="productPages">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{ route('products.index') }}" class="nav-link {{ request()->routeIs('products.index') ? 'active' : '' }}">Products</a>
+                            <a href="{{ route('products.index') }}"
+                                class="nav-link {{ request()->routeIs('products.index') ? 'active' : '' }}">Products</a>
                         </li>
                     </ul>
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-toggle="collapse" href="#categoryPages" role="button" aria-expanded="false" aria-controls="categoryPages">
+                <a class="nav-link" data-bs-toggle="collapse" href="#categoryPages" role="button" aria-expanded="false"
+                    aria-controls="categoryPages">
                     <i class="link-icon" data-feather="box"></i>
                     <span class="link-title">Manage Categories</span>
                     <i class="link-arrow" data-feather="chevron-down"></i>
@@ -42,12 +45,28 @@
                 <div class="collapse" id="categoryPages">
                     <ul class="nav sub-menu">
                         <li class="nav-item">
-                            <a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.index') ? 'active' : '' }}">Categories</a>
+                            <a href="{{ route('categories.index') }}"
+                                class="nav-link {{ request()->routeIs('categories.index') ? 'active' : '' }}">Categories</a>
                         </li>
                     </ul>
                 </div>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="collapse" href="#orderPages" role="button" aria-expanded="false"
+                    aria-controls="orderPages">
+                    <i class="link-icon" data-feather="box"></i>
+                    <span class="link-title">Manage Order</span>
+                    <i class="link-arrow" data-feather="chevron-down"></i>
+                </a>
+                <div class="collapse" id="orderPages">
+                    <ul class="nav sub-menu">
+                        <li class="nav-item">
+                            <a href="{{ route('orders.index') }}"
+                                class="nav-link {{ request()->routeIs('orders.index') ? 'active' : '' }}">Order</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             <li class="nav-item nav-category">Transaction</li>
             <li class="nav-item">
                 <a href="/reservation/index" class="nav-link">

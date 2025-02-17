@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
@@ -42,6 +43,15 @@ Route::middleware('auth')->group(function () {
         Route::put('{id}', [CategoryController::class, 'update'])->name('update');
         Route::delete('{id}', [CategoryController::class, 'destroy'])->name('destroy');
     });
+
+    Route::prefix('orders')->name('orders.')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->name('index');
+        Route::post('/', [OrderController::class, 'store'])->name('store');
+        Route::get('{id}', [OrderController::class, 'show'])->name('show');
+        Route::put('{id}', [OrderController::class, 'update'])->name('update');
+        Route::delete('{id}', [OrderController::class, 'destroy'])->name('destroy');
+    });
+
 });
 
 require __DIR__.'/auth.php';
